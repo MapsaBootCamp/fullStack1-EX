@@ -1,14 +1,14 @@
 {
-  "name": "w1-home",
+  "name": "library",
   "version": "1.0.0",
-  "description": "",
+  "description": "simple library project without express",
   "main": "main.js",
   "scripts": {
     "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mohammad Foroutan",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.20"
