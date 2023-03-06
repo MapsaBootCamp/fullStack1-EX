@@ -86,10 +86,27 @@ function destroy(id) {
     });
   });
 }
+
+function getAllBookWithQuery(querySeach) {
+  return new Promise((resolve, reject) => {
+    db.all(
+      'SELECT * FROM Books WHERE title LIKE "%" || ? || "%" ',
+      querySeach,
+      (err, books) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(books);
+        }
+      }
+    );
+  });
+}
 module.exports = {
   getBookbyID,
   getAllBooks,
   store,
   update,
   destroy,
+  getAllBookWithQuery,
 };

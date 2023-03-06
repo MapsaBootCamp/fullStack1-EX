@@ -25,13 +25,13 @@ exports.index = async (req, res) => {
   } else {
     try {
       const bookObjects = await bookService.getAllBooks();
+      for (const iterator of bookObjects) {
+        iterator.rentCount = await rentService.countBookRentbyID(iterator.id);
+      }
       if (req.isJson) {
         res.writeHead(StatusCodes.OK, contentTypes.json);
         return res.json(bookObjects);
       } else {
-        for (const iterator of bookObjects) {
-          iterator.rentCount = await rentService.countBookRentbyID(iterator.id);
-        }
         const path = "./views/books/index.html";
 
         res.writeHead(StatusCodes.OK, contentTypes.html);
@@ -67,12 +67,8 @@ exports.update = async (req, res) => {
 };
 
 exports.destroy = async (req, res) => {
-  const id = req.query.id;
-
-  if (!id) {
-    res.writeHead(StatusCodes.NOT_ACCEPTABLE, contentTypes.json);
-    return utils.errResponse(res, "for delete a book please send book id!");
-  } else {
+  if (req.query) {
+    const id = req.query.id;
     try {
       await bookService.destroy(parseInt(id));
       res.writeHead(StatusCodes.NO_CONTENT, contentTypes.json);
@@ -81,6 +77,9 @@ exports.destroy = async (req, res) => {
       res.writeHead(StatusCodes.INTERNAL_SERVER_ERROR, contentTypes.json);
       return utils.errResponse(res, error.message);
     }
+  } else {
+    res.writeHead(StatusCodes.NOT_ACCEPTABLE, contentTypes.json);
+    return utils.errResponse(res, "for delete a book please send book id!");
   }
 };
 
@@ -94,6 +93,53 @@ exports.store = async (req, res) => {
       const newBookObject = await bookService.store(body);
       res.writeHead(StatusCodes.CREATED, contentTypes.json);
       res.json(newBookObject);
+    } catch (error) {
+      res.writeHead(StatusCodes.INTERNAL_SERVER_ERROR, contentTypes.json);
+      return utils.errResponse(res, error.message);
+    }
+  }
+};
+
+exports.search = async (req, res) => {
+  if (req.query) {
+    const querySeach = req.query.title;
+    try {
+      const bookSearchObjects = await bookService.getAllBookWithQuery(
+        querySeach
+      );
+
+      for (const iterator of bookSearchObjects) {
+        iterator.rentCount = await rentService.countBookRentbyID(iterator.id);
+      }
+
+      if (req.isJson) {
+        res.writeHead(StatusCodes.OK, contentTypes.json);
+        return res.json(bookSearchObjects);
+      } else {
+        const path = "./views/books/search.html";
+
+        res.writeHead(StatusCodes.OK, contentTypes.html);
+        utils.getFile(path, res, bookSearchObjects, "search");
+      }
+    } catch (error) {
+      res.writeHead(StatusCodes.INTERNAL_SERVER_ERROR, contentTypes.json);
+      return utils.errResponse(res, error.message);
+    }
+  } else {
+    try {
+      const bookObjects = await bookService.getAllBooks();
+      for (const iterator of bookObjects) {
+        iterator.rentCount = await rentService.countBookRentbyID(iterator.id);
+      }
+      if (req.isJson) {
+        res.writeHead(StatusCodes.OK, contentTypes.json);
+        return res.json(bookObjects);
+      } else {
+        const path = "./views/books/index.html";
+
+        res.writeHead(StatusCodes.OK, contentTypes.html);
+        utils.getFile(path, res, bookObjects, "search");
+      }
     } catch (error) {
       res.writeHead(StatusCodes.INTERNAL_SERVER_ERROR, contentTypes.json);
       return utils.errResponse(res, error.message);

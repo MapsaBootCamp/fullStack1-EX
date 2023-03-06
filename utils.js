@@ -44,6 +44,36 @@ exports.getFile = (path, res, objects, flag) => {
           document.getElementById("table1").innerHTML = output;
 
           res.end(document.toString());
+        } else if (flag === "search") {
+          const document = parse(html);
+
+          let output = `<tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Pages</th>
+            <th>Stock</th>
+            <th>Rented</th>
+            <th>Remain</th>
+          </tr>\n`;
+
+          for (const value of objects) {
+            const remain = value.stock - value.rentCount;
+
+            output += `<tr>
+              <td>${value.title}</td>
+              <td>${value.author}</td>
+              <td>${value.publisher}</td>
+              <td>${value.pages}</td>
+              <td>${value.stock}</td>
+              <td>${value.rentCount}</td>
+              <td>${remain}</td>
+            </tr>\n`;
+          }
+
+          document.getElementById("table1").innerHTML = output;
+
+          res.end(document.toString());
         } else if (flag === "users") {
           const document = parse(html);
 
