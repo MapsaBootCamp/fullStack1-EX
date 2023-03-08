@@ -1,0 +1,29 @@
+{
+  "name": "eggzam",
+  "version": "0.1.0",
+  "description": "## تمرین هفته دوم کمپ - ### پروژه پیاده‌سازی API ‍ کوییز آنلاین  - #### با استفاده از express و prisma - #### مدل‌های مورد نیاز: سوال‌ها، دسته‌بندی‌ها، کاربران، آزمون‌ها و روابط آن‌ها - #### سوال‌ها ۴ گزینه ای با نمره منفی - در سه سطح آسان ، متوسط، سخت - #### قرار است پروژه در سه هفته انجام شو.د - #### تا جلسه سه شنبه  ۱۶ام مدل سازی دیتابیس انجام شود - #### برای اطلاعات بیشتر به دقیقه ۵۷ ویدئو جلسه سوم هفته دوم کمپ مراجعه کنید",
+  "main": "init.js",
+  "scripts": {
+    "start": "nodemon init.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MapsaBootCamp/fullStack1-EX.git"
+  },
+  "author": "Dakhm3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MapsaBootCamp/fullStack1-EX/issues"
+  },
+  "homepage": "https://github.com/MapsaBootCamp/fullStack1-EX#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jquery": "^3.6.3",
+    "nodemon": "^2.0.21",
+    "prisma": "^4.11.0",
+    "sqlite3": "^5.1.4"
+  }
+}
