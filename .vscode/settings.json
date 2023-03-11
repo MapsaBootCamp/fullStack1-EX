@@ -5,7 +5,7 @@
       "server": "localhost",
       "port": 5432,
       "driver": "PostgreSQL",
-      "name": "quiz online",
+      "name": "quiz-online",
       "database": "quizOnlineDB",
       "username": "ahoora",
       "password": "ahoora1234"
