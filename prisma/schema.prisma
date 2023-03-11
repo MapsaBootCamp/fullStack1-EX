@@ -8,10 +8,13 @@ datasource db {
 }
 
 model User {
-    id       Int     @id @default(autoincrement())
-    email    String  @unique
-    name     String
-    password String?
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    email     String   @unique
+    name      String
+    password  String
+    sex       Boolean?
 
     exams userExams[]
 }
@@ -47,18 +50,21 @@ model Difficulty {
 
 model Exam {
     id        Int         @id @default(autoincrement())
+    createdAt DateTime    @default(now())
+    updatedAt DateTime    @updatedAt
     questions Question[]
     users     userExams[]
 }
 
 model userExams {
-    Exam   Exam @relation(fields: [examId], references: [id])
-    examId Int
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    Exam      Exam     @relation(fields: [examId], references: [id])
+    examId    Int
 
     User   User @relation(fields: [userId], references: [id])
     userId Int
 
     score Int?
-
-    @@id([examId, userId])
 }
