@@ -1,0 +1,64 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DB_URL")
+}
+
+model User {
+    id       Int     @id @default(autoincrement())
+    email    String  @unique
+    name     String
+    password String?
+
+    exams userExams[]
+}
+
+model Question {
+    id    Int    @id @default(autoincrement())
+    title String
+
+    option1       String
+    option2       String
+    option3       String
+    option4       String
+    correctAnswer Int
+
+    Exam         Exam?       @relation(fields: [examId], references: [id])
+    examId       Int?
+    Category     Category?   @relation(fields: [categoryId], references: [id])
+    categoryId   Int?
+    Difficulty   Difficulty? @relation(fields: [difficultyId], references: [id])
+    difficultyId Int?
+}
+
+model Category {
+    id        Int        @id @default(autoincrement())
+    questions Question[]
+}
+
+model Difficulty {
+    id        Int        @id @default(autoincrement())
+    level     String
+    questions Question[]
+}
+
+model Exam {
+    id        Int         @id @default(autoincrement())
+    questions Question[]
+    users     userExams[]
+}
+
+model userExams {
+    Exam   Exam @relation(fields: [examId], references: [id])
+    examId Int
+
+    User   User @relation(fields: [userId], references: [id])
+    userId Int
+
+    score Int?
+
+    @@id([examId, userId])
+}
