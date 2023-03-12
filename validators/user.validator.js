@@ -18,8 +18,8 @@ exports.userCreateValidator = [
   check("name")
     .notEmpty()
     .withMessage("name field should not be empty")
-    .isLength({ min: 5 })
-    .withMessage("name should be at least 5 characters")
+    .isLength({ min: 4 })
+    .withMessage("name should be at least 4 characters")
     .trim()
     .escape(),
 
@@ -27,6 +27,15 @@ exports.userCreateValidator = [
   check("password")
     .notEmpty()
     .withMessage("password should not be empty")
-    .isLength({ min: 3 })
-    .withMessage("pass should have at least 3 characters"),
+    .isLength({ min: 4 })
+    .withMessage("pass should have at least 4 characters"),
 ];
+exports.userLoginValidator = [
+  body("email")
+  .notEmpty().withMessage("emai should not be empty")
+  .isEmail().withMessage("invalid email format")
+  .trim().escape(),
+
+  body("password")
+  .notEmpty().withMessage("password should not be empty")
+]

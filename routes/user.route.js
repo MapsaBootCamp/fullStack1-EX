@@ -12,4 +12,9 @@ router.post(
   checkError,
   userController.create
 );
+router.post("/login",
+userValidator.userLoginValidator,
+checkError,
+userController.login
+)
 module.exports = router;
