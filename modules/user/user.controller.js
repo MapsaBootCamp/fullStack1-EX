@@ -22,7 +22,7 @@ const userController = {
   },
   create: async (req, res) => {
     try {
-        console.log("in create controller");
+      console.log("in create controller");
       const { password } = req.body;
       const salt = await bcrypt.genSalt(10);
       const hashedPass = await bcrypt.hash(password, salt);
@@ -38,6 +38,11 @@ const userController = {
         message: error.message,
       });
     }
+  },
+  update: async(req, res) => {
+    const {id} = req.params;
+    const result = await userService.update(id, req.body)
+    return res.json(result)
   },
 
   login: async (req, res) => {
@@ -70,6 +75,15 @@ const userController = {
         error: true,
         message: error.message,
       });
+    }
+  },
+  delete: async (req, res) => {
+    try {
+      const { id } = req.body;
+      const result = await userService.delete(id);
+      return res.status(204).json(result);
+    } catch (error) {
+      return res.json({ error: true, message:error.message });
     }
   },
 };
