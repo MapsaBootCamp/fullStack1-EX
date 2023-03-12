@@ -1,0 +1,126 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = ""
+}
+
+model User {
+    id           Int      @id @default(autoincrement())
+    firstName    String
+    lastName     String
+    mobile       Int?
+    email        String   @unique
+    lastLogin    DateTime @default(now())
+    registerDate DateTime @default(now())
+    password     String?
+    address      String
+    gender       String?
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+    quiz         Quiz[]
+    results      Result[]
+}
+
+model Quiz {
+    id        Int       @id @default(autoincrement())
+    title     String
+    // score           Float       @default(0)
+    // published       DateTime
+    startAt   DateTime
+    duration  DateTime
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    category  Int
+    qustions  Qustion[]
+    quiz      User[]
+    result    Result[]
+    // user            User[]
+    // anser           Answer[]
+    // taken           Taken[]
+}
+
+model Qustion {
+    id            Int       @id @default(autoincrement())
+    title         String
+    level         Int
+    correctOption Int
+    category      Int
+    creator       String
+    createdAt     DateTime
+    updatedAt     DateTime
+    options       Option[]
+    quiz          Quiz      @relation(fields: [quizId], references: [id])
+    quizId        Int
+    through       through[]
+}
+
+model Option {
+    id Int @id @default(autoincrement())
+
+    sortId     Int
+    content    String
+    qustion    Qustion @relation(fields: [questionId], references: [id])
+    questionId Int     @unique
+}
+
+// quizOnUser
+model Result {
+    id      Int       @id @default(autoincrement())
+    userId  Int       @unique
+    quizId  Int       @unique
+    // result          Result      @relation(fields: [userId], references: [id])
+    result  Float
+    quiz    Quiz      @relation(fields: [quizId], references: [id])
+    user    User      @relation(fields: [userId], references: [id])
+    through through[]
+}
+
+model through {
+    qustion    Qustion @relation(fields: [questionId], references: [id])
+    questionId Int
+    result     Result  @relation(fields: [resultId], references: [id])
+    resultId   Int
+    @@id([questionId, resultId])
+}
+
+// model Qustions {
+//     id              Int         @id @default(autoincrement())
+//     // quizID          Int      
+//     type            String
+//     active          Boolean     @default(true)
+//     level           Int
+//     score           Int
+//     createdAt       DateTime    @default(now())
+//     updatedAt       DateTime    @updatedAt
+//     contentOfTest   String      @unique
+//     answer          Answer[]
+// }
+
+// model Answer {
+//     id              Int         @id @default(autoincrement())
+//     answerID        Int
+//     quizID          Int
+//     testId          Int
+//     active          Boolean     @default(true)
+//     correct         Boolean     @default(true)
+//     createdAt       DateTime    @default(now())
+//     updatedAt       DateTime    @updatedAt
+//     contentOfAnswer String      @unique
+//     quiz            Quiz[]
+//     test            Test[]
+// }
+
+// model Taken {
+//     id              Int         @id @default(autoincrement())
+//     score           Float
+//     correct         Boolean     @default(true)
+//     createdAt       DateTime    @default(now())
+//     stratAt         DateTime    @default(now())
+//     finishedAt      DateTime    @default(now())
+//     content         String      @unique
+//     userID          User[]
+//     quizID          Quiz[]
+// }
