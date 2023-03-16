@@ -1,6 +1,7 @@
 // Mohsen Razavi JS Exam 1401/12/05
 
 // Question 1
+//اینجا تقلب کردی ببین ما که نگفتیم اون ساب استرینگی که می خوایم حتما با فاصله جدا شده شاید اصلا توش فاصله داشت یا شاید ما اصلا تو استرینگ اصلی فاصله نذاشتیم.
 const findTheWord = (str, word) => {
   const words = str.split(" ");
   let checkWord = false;
@@ -30,6 +31,7 @@ const promise_3 = new Promise((resolve, reject) => {
 // Promise.all([promise_1, promise_2, promise_3]).then((res) => console.log(res));
 //===============================================
 // Question 2
+//ببین اینجا هم اتفاقی که می افته اینه که ما می خوایم یه پرامیس داشته باشیم که اگر همه ریزالو شدن، ریزالو بشه و در غیر اینصورت یعنی حتی اگه یکیشون ریجکت شد اینم ریجکت بشه
 const names = ["Akbar", "Asghar", "Shahrooz"];
 
 const show = (name) => new Promise((resolve) => resolve(name));
