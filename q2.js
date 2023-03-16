@@ -1,5 +1,6 @@
 
 // p1 = new Promise((resolve, reject)=> resolve(50));
+// توی این سوال حالتی رو که اگه یکیشون ریجکت شد باید خروجی نهایی رو کلا ریجکت کنی رو در نظر نگرفتی
 p2 = 200;
 p3 = new Promise(function(resolve, reject) {
     setTimeout(resolve, 2000, 'geek');
