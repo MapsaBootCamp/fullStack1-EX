@@ -1,3 +1,4 @@
+// افرین که حلش کردی ولی حقیقتا من پدرم دراومد تا فهمیدم چیکار کردی از بس که متغیر عجیب داری سعی کن یه مقدار خوانا تر بنویسی
 const calculateStatesCount = (citiesRelations) => {
     let statesObject = [[0]];
 
