@@ -1,3 +1,4 @@
+// باید این قسمت رو هم که اگه یکیشون ریجکت میشد چه اتفاقی می فتاد پیاده سازی می کردی
 const promise1 = new Promise((resolve, reject) => {
   resolve(true);
 });
