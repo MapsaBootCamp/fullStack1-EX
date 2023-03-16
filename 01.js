@@ -1,3 +1,4 @@
+//حالت خاص حل کردی کی گفته که ما استرینگمون رو حتما با فاصله جدا می کنیم از هم
 const myString = 'Hello this is my first exam'
 const findObj = 'first'
 
