@@ -1,6 +1,7 @@
 // // letter="aaa@bbsadf";
 // console.log(letter.replace('@','*'));
 // console.log(letter);
+//در صورتی که نگفته بودیم استفاده نشه از تابع ایول ،کاملا درست بود
 
 function changeSign(letter){
     switch(letter){
