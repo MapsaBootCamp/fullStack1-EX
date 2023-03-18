@@ -1,0 +1,1 @@
+exports.quizControl = require("./quizControl");

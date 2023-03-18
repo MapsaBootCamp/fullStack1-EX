@@ -16,7 +16,6 @@ const seedUser = [
 
 const seedQuiz = [
   {
-    title: "varzeshi",
     question: {
       create: [
         {
@@ -27,7 +26,9 @@ const seedQuiz = [
           c: "sudan",
           d: "china",
           correctAnswer: "japon",
+          category: { create: { title: "varzeshi" } },
         },
+
         {
           content: "gahraman worldCup 2022 che timi bood?",
           level: "mamooli",
@@ -36,26 +37,29 @@ const seedQuiz = [
           c: "france",
           d: "germany",
           correctAnswer: "argentina",
+          category: { create: { title: "varzeshi" } },
         },
       ],
     },
-    title: "cinema",
+  },
+
+  {
     question: {
       create: [
         {
           content: "kargardan film avatar 2 kist?",
-          level: "mamooli",
+          level: "sakht",
           a: "cameron",
-          b: "modiri",
-          c: "lopez",
-          d: "johnson",
+          b: "kameroon",
+          c: "cameroun",
+          d: "comeran",
           correctAnswer: "cameron",
+          category: { create: { title: "cinema" } },
         },
       ],
     },
   },
 ];
-
 async function main() {
   console.log(`Start seeding ...`);
   for (const user of seedUser) {
