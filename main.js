@@ -1,19 +1,19 @@
 const http = require("http");
-const { runInContext } = require("vm");
 const db = require("./db");
 const route = require("./routes")
+const utils = require("./utils");
+const {userController, bookController} = require("./controllers")
 
 
 const PORT = process.env.PORT  || 3000;
 
-route.post("/register", (req, res) => {
+route.post("/register", userController.register);
 
+route.post("/new-book", bookController.new);
 
+route.post("/all-books", bookController.all)
 
-    db.run(`INSERT INTO User (username) VALUES(?)`, username, (err) => {
-        if (err)
-            console.log(err.message);
-        else
-            return res.end("User registered")
-    })
-})
+http.createServer(route.handler)
+    .listen(PORT, () => 
+    console.log(`run server on Port ${PORT}`)
+    );

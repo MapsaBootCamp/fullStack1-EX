@@ -1,6 +1,3 @@
-const fs = require("fs"),
-  { StatusCodes } = require("http-status-codes");
-  
 exports.errResponse = (res, errorMessage) => {
   const result = {
     error: true,
