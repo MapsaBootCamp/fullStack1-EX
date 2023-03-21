@@ -1,23 +1,19 @@
-# fullStack1-EX
+## Online Quiz Project
 
-## تمرین هفته دوم کمپ
-- ### پروژه پیاده‌سازی API ‍ کوییز آنلاین 
-- #### با استفاده از express و prisma
-- #### مدل‌های مورد نیاز: سوال‌ها، دسته‌بندی‌ها، کاربران، آزمون‌ها و روابط آن‌ها
-- #### سوال‌ها ۴ گزینه ای با نمره منفی - در سه سطح آسان ، متوسط، سخت
-- #### قرار است پروژه در سه هفته انجام شو.د
-- #### تا جلسه سه شنبه  ۱۶ام مدل سازی دیتابیس انجام شود
-- #### برای اطلاعات بیشتر به دقیقه ۵۷ ویدئو جلسه سوم هفته دوم کمپ مراجعه کنید
+### Online Quiz API with NodeJS and Express
 
+#### TODO
 
----
-
-
-## تمرین هفته اول کمپ
-### پیاده سازی کتابخانه
-#### بدون استفاده از express
-#### جداول مورد نیاز: کتاب‌ها و کاربرها
-#### مشخصات کتاب و موجودی‌ هر کتاب و تعداد کتاب‌های قابل امانت دادن , مشخصات کاربر نمایش داده شود.
-#### سه صفحه شامل صفحه اصلی، صفحه امانت دادن کتاب، و صفحه پروفایل کاربران ساخته شود.
-#### هر کاربر حداکثر سه کتاب همزمان می‌تواند امانت بگیرد.
-#### و بقیه موارد مورد نیاز
+- [x] ErrorHandler not working
+- [ ] ErrorHandler updating
+- [x] Category API
+- [x] Improve Category API
+- [ ] Complete Category API
+- [x] Quiz API
+- [x] Imporove Quiz API
+- [ ] Complete Quiz API
+- [ ] Check all Quiz's Questions must be in same category
+- [ ] Check all Quiz's Questions must be in same difficulty as Quiz
+- [x] Take a Quiz by User API
+- [ ] Improve Take a Quiz By User API
+- [x] Answer the Quiz by User API

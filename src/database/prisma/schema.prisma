@@ -1,0 +1,119 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DB_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id        Int        @id @default(autoincrement())
+    name      String
+    email     String     @unique
+    password  String
+    role      Role       @default(CLIENT)
+    createdAt DateTime   @default(now())
+    updatedAt DateTime   @updatedAt
+    quizzes   UserQuiz[]
+}
+
+model Category {
+    id          Int                @id @default(autoincrement())
+    title       String
+    description String?
+    createdAt   DateTime           @default(now())
+    updatedAt   DateTime           @updatedAt
+    questions   QuestionCategory[]
+    quizzez     Quiz[]
+}
+
+model Question {
+    id            Int                @id @default(autoincrement())
+    title         String
+    answer1       String
+    answer2       String
+    answer3       String
+    answer4       String
+    correctAnswer Int
+    difficulty    Difficulty
+    createdAt     DateTime           @default(now())
+    updatedAt     DateTime           @updatedAt
+    users         UserAnswer[]
+    quizzes       QuizQuestion[]
+    categories    QuestionCategory[]
+}
+
+model Quiz {
+    id          Int            @id @default(autoincrement())
+    title       String
+    description String?
+    categoryId  Int?
+    time        DateTime?
+    difficulty  Difficulty
+    createdAt   DateTime       @default(now())
+    updatedAt   DateTime       @updatedAt
+    users       UserQuiz[]
+    questions   QuizQuestion[]
+    Category    Category?      @relation(fields: [categoryId], references: [id])
+}
+
+model QuizQuestion {
+    id         Int      @id @default(autoincrement())
+    quizId     Int
+    quiz       Quiz     @relation(fields: [quizId], references: [id])
+    questionId Int
+    question   Question @relation(fields: [questionId], references: [id])
+
+    @@unique([quizId, questionId])
+}
+
+model QuestionCategory {
+    id         Int      @id @default(autoincrement())
+    categoryId Int
+    category   Category @relation(fields: [categoryId], references: [id])
+    questionId Int
+    question   Question @relation(fields: [questionId], references: [id])
+
+    @@unique([categoryId, questionId])
+}
+
+model UserQuiz {
+    id        Int          @id @default(autoincrement())
+    userId    Int
+    user      User         @relation(fields: [userId], references: [id])
+    quizId    Int
+    quiz      Quiz         @relation(fields: [quizId], references: [id])
+    score     Float?
+    startTime DateTime?
+    endTime   DateTime?
+    asnwers   UserAnswer[]
+    createdAt DateTime     @default(now())
+    updatedAt DateTime     @updatedAt
+
+    @@unique([userId, quizId])
+}
+
+model UserAnswer {
+    id           Int      @id @default(autoincrement())
+    userQuizId   Int
+    userQuiz     UserQuiz @relation(fields: [userQuizId], references: [id])
+    questionId   Int
+    question     Question @relation(fields: [questionId], references: [id])
+    answerChosen Int
+
+    @@unique([userQuizId, questionId])
+}
+
+enum Role {
+    CLIENT
+    ADMIN
+    OPERATOR
+    DEACTIVATED
+}
+
+enum Difficulty {
+    EASY
+    MEDIUM
+    DIFFICULT
+}
