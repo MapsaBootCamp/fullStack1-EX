@@ -1,5 +1,14 @@
 # fullStack1-EX
 
+## تمرین هفته پنجم کمپ
+- ### پیاده سازی اپ Todo List 
+- #### با استفاده از Express, GrqphQL, Prisma, sqlite/postgres 
+- #### مدل‌های مورد نیاز: user, todo
+- #### Query { users, todos } , Mutation { addTodo, updateTodo, deleteTodo}
+- #### زمان ارسال تا سه‌شنبه ۲۹ فروردین
+
+---
+
 ## تمرین هفته دوم کمپ
 - ### پروژه پیاده‌سازی API ‍ کوییز آنلاین 
 - #### با استفاده از express و prisma
