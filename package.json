@@ -1,0 +1,35 @@
+{
+  "name": "fullstack1-ex",
+  "version": "1.0.0",
+  "description": "## تمرین هفته پنجم کمپ - ### پیاده سازی اپ Todo List  - #### با استفاده از Express, GrqphQL, Prisma, sqlite/postgres  - #### مدل‌های مورد نیاز: user, todo - #### Query { users, todos } , Mutation { addTodo, updateTodo, deleteTodo} - #### زمان ارسال تا سه‌شنبه ۲۹ فروردین",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MapsaBootCamp/fullStack1-EX.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MapsaBootCamp/fullStack1-EX/issues"
+  },
+  "homepage": "https://github.com/MapsaBootCamp/fullStack1-EX#readme",
+  "dependencies": {
+    "@prisma/client": "^4.12.0",
+    "@types/express": "^4.17.17",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.3.0",
+    "nodemon": "^2.0.22"
+  },
+  "devDependencies": {
+    "prisma": "^4.12.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
