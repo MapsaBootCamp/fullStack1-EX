@@ -22,10 +22,9 @@ export const ToDoType = new GraphQLObjectType({
     status: { type: GraphQLBoolean },
     userId: {
       type: UserType,
-      // parent always see his top level object, for example here it readss id from id's field.
-      resolve: (parent, args) => {
-        return db.user.findMany({
-          where: { id: parent.id },
+      resolve: async (parent, args) => {
+        return await db.user.findUnique({
+          where: { id: parent.userId },
         });
       },
     },

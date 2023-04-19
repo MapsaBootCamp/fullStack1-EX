@@ -9,16 +9,16 @@ import db from "../prisma/db.js";
 
 export const userQuery = {
   type: new GraphQLList(UserType),
-  resolve: () => {
-    return db.user.findMany();
+  resolve: async () => {
+    return await db.user.findMany();
   },
 };
 
 export const addNewUserQuery = {
   type: UserType,
   args: { name: { type: GraphQLString } },
-  resolve: (parent, args) => {
-    return db.user.create({
+  resolve: async (parent, args) => {
+    return await db.user.create({
       data: { name: args.name },
     });
   },
@@ -26,8 +26,8 @@ export const addNewUserQuery = {
 
 export const todoQuery = {
   type: new GraphQLList(ToDoType),
-  resolve: () => {
-    return db.todo.findMany();
+  resolve: async () => {
+    return await db.todo.findMany();
   },
 };
 
@@ -38,8 +38,8 @@ export const createNewToDoQuery = {
     title: { type: GraphQLString },
     status: { type: GraphQLBoolean },
   },
-  resolve: (parent, args) => {
-    return db.todo.create({
+  resolve: async (parent, args) => {
+    return await db.todo.create({
       data: { ...args },
     });
   },
@@ -52,8 +52,8 @@ export const updateToDoQuery = {
     title: { type: GraphQLString },
     status: { type: GraphQLBoolean },
   },
-  resolve: (parent, args) => {
-    return db.todo.update({
+  resolve: async (parent, args) => {
+    return await db.todo.update({
       where: { id: args.id },
       data: { ...args },
     });
@@ -63,8 +63,8 @@ export const updateToDoQuery = {
 export const deleteToDoQuery = {
   type: ToDoType,
   args: { id: { type: GraphQLInt } },
-  resolve: (parent, args) => {
-    return db.todo.delete({
+  resolve: async (parent, args) => {
+    return await db.todo.delete({
       where: { id: args.id },
     });
   },
