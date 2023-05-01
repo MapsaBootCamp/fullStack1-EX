@@ -1,5 +1,5 @@
-# fullStack1-EX
+# NodeJS Express Storage Manager With TypeScript
 
-## تمرین هفته ششم کمپ
-- ### پیاده سازی اپ مدیریت آپلود فایل‌ها 
-- #### با استفاده از Express, multer, ... 
+## Simple JWT Authentication and Simple Authorization
+
+### Multer, Express Session, Cookie parser, EJS Template
