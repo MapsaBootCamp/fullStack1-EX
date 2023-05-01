@@ -31,8 +31,7 @@
                     width="40"
                     height="40"
                     alt="avatar"
-                  />
-                  <%=name %>
+                  /><span class="ps-3"> <%=name %> </span>
                 </a>
               </li>
             </ul>
@@ -61,13 +60,13 @@
                   name="fileinput"
                   multiple
                 />
+                <button type="submit" class="btn btn-primary">Upload</button>
               </div>
-              <button type="submit" class="btn btn-primary">Upload</button>
             </form>
           </div>
         </div>
         <div class="card col-md-4 mt-3">
-          <div class="card-header">Remaining Storage</div>
+          <div class="card-header">Storage (<%= capacity %> GB)</div>
           <div class="card-body">
             <div class="progress">
               <!-- Change the value of aria-valuenow and style width according to the actual storage percentage -->

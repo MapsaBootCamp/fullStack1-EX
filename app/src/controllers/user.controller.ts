@@ -36,12 +36,13 @@ class UserController {
       const filesList = await this.mediaService.allUserMedias(req.user.id);
 
       res.render("home", {
-        pageTitle: "Home",
+        pageTitle: "Dashboard",
         name: req.user.name,
         avatar: req.user.avatarUrl
           ? "images/" + req.user.avatarUrl
           : "avatar.png",
         usedCpacityPercent: Math.ceil(usedCpacityPercent),
+        capacity: req.user.capacity,
         userUsedCapacity,
         filesList,
       });
