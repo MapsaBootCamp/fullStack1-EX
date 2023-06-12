@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "37d03c07-35e3-419f-af07-54f419161262",
+		"name": "Nodes Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24266446"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register a new user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobile\": \"09123001001\",\n    \"password\": \"A@13LIlks23\",\n    \"confirmPassword\": \"A@13LIlks23\",\n    \"role\": \"CUSTOMER\",\n    \"age\": 20,\n    \"national_code\": 2001959091,\n    \"name\": \"mohammad\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}{{PORT}}/register",
+							"host": [
+								"{{localhost}}{{PORT}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login user with username",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobile\": \"09123001001\",\n    \"password\": \"A@13LIlks23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}{{PORT}}/login/",
+							"host": [
+								"{{localhost}}{{PORT}}"
+							],
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All User's Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ADMIN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{PORT}}/profile/all",
+							"host": [
+								"{{localhost}}{{PORT}}"
+							],
+							"path": [
+								"profile",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show User Self Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{mohammad}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}{{PORT}}/profile/",
+							"host": [
+								"{{localhost}}{{PORT}}"
+							],
+							"path": [
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Car to Owner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 4,\n    \"type\": \"small\",\n    \"color\": \"red\",\n    \"length\": 3.5,\n    \"load_volume\": 25\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}{{PORT}}/car/64848a5e2075aa4efeedddad",
+							"host": [
+								"{{localhost}}{{PORT}}"
+							],
+							"path": [
+								"car",
+								"64848a5e2075aa4efeedddad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cars info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 4,\n    \"type\": \"small\",\n    \"color\": \"red\",\n    \"length\": 3.5,\n    \"load_volume\": 25\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}{{PORT}}/car?car-type=big&max-road-width=20",
+							"host": [
+								"{{localhost}}{{PORT}}"
+							],
+							"path": [
+								"car"
+							],
+							"query": [
+								{
+									"key": "color",
+									"value": "red",
+									"disabled": true
+								},
+								{
+									"key": "color",
+									"value": "black",
+									"disabled": true
+								},
+								{
+									"key": "minAge",
+									"value": "30",
+									"disabled": true
+								},
+								{
+									"key": "car-type",
+									"value": "big"
+								},
+								{
+									"key": "max-road-width",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 4,\n    \"type\": \"small\",\n    \"color\": \"red\",\n    \"length\": 3.5,\n    \"load_volume\": 25\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localhost}}{{PORT}}/test",
+							"host": [
+								"{{localhost}}{{PORT}}"
+							],
+							"path": [
+								"test"
+							],
+							"query": [
+								{
+									"key": "color",
+									"value": "red",
+									"disabled": true
+								},
+								{
+									"key": "color",
+									"value": "black",
+									"disabled": true
+								},
+								{
+									"key": "minAge",
+									"value": "70",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{USER}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ADMIN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NmE4NmVlOTZiOWUyYTk3MTU5MjA0NyIsImlhdCI6MTY4NDcwMjk1OCwiZXhwIjoxNjg1MDYyOTU4fQ.7qdDRbcULljtKFRJwr0sXa_FTZ-Lrmmy7nIM3zSNS_k",
+			"type": "string"
+		},
+		{
+			"key": "PORT",
+			"value": "3000"
+		}
+	]
+}
